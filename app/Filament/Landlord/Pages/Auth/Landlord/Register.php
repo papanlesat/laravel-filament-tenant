@@ -3,7 +3,7 @@
 namespace App\Filament\Landlord\Pages\Auth\Landlord;
 
 use Filament\Pages\Auth\Register as BaseRegister;
-use Filament\Forms\Components\{Select, TextInput};
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Component;
 use Filament\Http\Responses\Auth\Contracts\RegistrationResponse;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
@@ -25,7 +25,6 @@ class Register extends BaseRegister
                         $this->getTenantFormDomainComponent(),
                         $this->getPasswordFormComponent(),
                         $this->getPasswordConfirmationFormComponent(),
-                        //$this->getRoleFormComponent(),
                     ])
                     ->statePath('data'),
             ),
@@ -47,17 +46,6 @@ class Register extends BaseRegister
             ->maxLength(250)
             ->required()
             ->label('Website');
-    }
-
-    protected function getRoleFormComponent(): Component
-    {
-        return Select::make('role')
-            ->options([
-                'buyer' => 'Buyer',
-                'seller' => 'Seller',
-            ])
-            ->default('buyer')
-            ->required();
     }
 
     protected function registerTenant(array $data): array
