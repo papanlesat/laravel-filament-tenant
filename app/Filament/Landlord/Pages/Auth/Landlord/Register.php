@@ -48,13 +48,6 @@ class Register extends BaseRegister
             ->label('Website');
     }
 
-    protected function registerTenant(array $data): array
-    {
-        $tenant = Tenant::create(['id' => 'foo']);
-        $tenant->domains()->create(['domain' => 'foo.localhost']);
-        return $tenant;
-    }
-
     public function register(): ?RegistrationResponse
     {
         try {
